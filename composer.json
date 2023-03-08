@@ -1,6 +1,6 @@
 {
-    "name": "noble/birthday-platform",
-    "description": "An automatic ecard generator using PHP",
+    "name": "noble/birthday-ecard-generator",
+    "description": "An automatic ecard generator using PHP and GD",
     "autoload": {
         "psr-4": {
             "Noble\\BirthdayPlatform\\": "src/"

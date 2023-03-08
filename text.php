@@ -126,7 +126,9 @@ imagettftext($im, $fontSizeLastName, 0, $textImgX, $textImgY + 135, $lastNameFon
 
 
 header("Content-type: image/png");
-$textbaseDir = "C:/Users/Noble/Desktop/birthday-platform/text/";
+
+$textbaseDir = __DIR__ . "\\text\\";
+
 
 $textFileName = $textbaseDir . '/' . time() . '.png';
 imagepng($im, $textFileName);

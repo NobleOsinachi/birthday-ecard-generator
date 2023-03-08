@@ -3,39 +3,9 @@
 
 
 
-/****
-
-class Person
-{
-    function _construct(
-
-
-        $title = "",
-        $firstName = "",
-        $lastName = "",
-        
-        $email,
-        $dateOfBirth = new   DateTime(),
-        $overlayPath = "",
-        $textPathImage = ""
-    ) {
-        $this->$title = $title;
-        $this->$firstName = $firstName;
-        $this->$lastName = $lastName;
-        $this->$email = $email;
-        $this->$dateOfBirth = $dateOfBirth;
-        $this->$overlayPath = $overlayPath;
-        $this->$textPathImage = $textPathImage;
-    }
-}
-
-
- */
-
-
+/** class Person{ function _construct( $title = "", $firstName = "", $lastName = "", $email, $dateOfBirth = new DateTime(), $overlayPath = "", $textPathImage = "" ) { $this->$title = $title; $this->$firstName = $firstName; $this->$lastName = $lastName; $this->$email = $email; $this->$dateOfBirth = $dateOfBirth; $this->$overlayPath = $overlayPath; $this->$textPathImage = $textPathImage; }} */
 
 // we have 2 pictures; personal is BIG, family is SMALL
-// TAKE NOTE cos na celebrant be the main gee
 
 $lastname = "Chukwukere-Osinachi";
 
@@ -49,7 +19,7 @@ $familyImg = confirmExtension($familyPicFileName);
 $templateForLongNames = [1, 3, 5, 6, 7];
 
 /** @var string selects a random template */
-$template = (strlen($lastname >= 16)) ? $templateForLongNames[array_rand($templateForLongNames)] : rand(1, 10);  /// long surname case study 1,3,5,6,7
+$template = (strlen($lastname >= 16)) ? $templateForLongNames[array_rand($templateForLongNames)] : rand(1, 10); /// long surname case study 1,3,5,6,7
 
 
 $textImage = confirmExtension(positionText($template)[1]);
@@ -170,9 +140,7 @@ imagedestroy($familyImg);
 
 function deleteTextDir()
 {
-
-    $baseDir = "C:/Users/Noble/Desktop/birthday-platform/";
-    $dir = './text//';
+    $dir =        __DIR__ . '\\text\\';
     if (file_exists($dir)) {
 
         $di = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
@@ -190,13 +158,14 @@ function getWidthOfText($text = 'Chukwukere Noble', $font_size = 20, $font_file 
     // Retrieve bounding box:
     $type_space = imagettfbbox($font_size, 0, $font_file, $text);
 
-    return  abs($type_space[4] - $type_space[0]);
+    return abs($type_space[4] - $type_space[0]);
 }
 
 
 function positionText($template = 1)
 {
-    $textbaseDir  = "C:/Users/Noble/Desktop/birthday-platform/text/";
+    $textbaseDir = __DIR__ . "\\text\\";
+
     // $font = 28;
     list($fontFileTitle, $fontFileFirstName, $fontFileLastName, $fontFileDate) = array("Signatie.ttf", "Mont-HeavyDEMO.ttf", "MYRIADPRO-BOLD.OTF", "MYRIADPRO-BOLD.OTF");
 
@@ -244,7 +213,7 @@ function positionText($template = 1)
 
 
 
-    $title =  "Brother";
+    $title = "Brother";
     $fullName = "Chukwukere Noble"; //$template . 
     $fullName = $fullName;
     list($lastname, $firstname) = explode(" ", $fullName);
@@ -282,7 +251,7 @@ function positionText($template = 1)
 
 
     header("Content-type: image/png");
-    $textFileName = $textbaseDir . '/images//' . time() . '.png';
+    $textFileName = $textbaseDir . '\\images\\' . time() . '.png';
     imagepng($im, $textFileName);
     imagedestroy($im);
     return [$im, $textFileName];
